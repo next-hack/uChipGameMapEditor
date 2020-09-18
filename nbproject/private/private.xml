@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/Entity.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/MidiConverter.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/USVCColor.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ChangeMapSizeDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/UsvcPackager.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/UChipPlayMapEditor.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SpriteCollection.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/IntegerSpinnerDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportTileAsCfileDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/USVCPackagerDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/MidiConvertOptions.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SpriteSetBuilder.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/PicToUSVCExporter.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportWaypointListDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/Waypoint.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/MapEditorMainFrame.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/CustomFileChooser.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SpriteFrame.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/PaletteRemapEditor.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SpriteAtlas.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportPaletteRemapDataDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/PicToUSVCOptimizer.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/AddFramesDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/UndoableState.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/TileProperties.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ColorChooserDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SpriteAnimationFrame.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/TilePropertiesDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportWavDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/MidiFileConvertDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SpritePosition.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportSpriteToCFileDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/USVCMapEditorUtilities.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/Palette.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SetTileSizesDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/GameMap.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/SizeCoordinate.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportMapSettings.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ShadeCreatorDialog.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportPicToUSVCImage.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/TileMapPainter.java</file>
+            <file>file:/C:/Users/PETN/Documents/NetBeansProjects/uChipPlayMapEditor/src/uchipgamemapeditor/ExportTableDialog.java</file>
+        </group>
+    </open-files>
+</project-private>

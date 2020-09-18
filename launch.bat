@@ -1,0 +1,1 @@
+java -classpath "build\classes;libs\*" uchipgamemapeditor.UChipGameMapEditor

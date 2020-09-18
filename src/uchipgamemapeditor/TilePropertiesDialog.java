@@ -1,0 +1,369 @@
+/*
+*  uChip Game Map Editor. A simple editor and integrated utility for tile-based games.
+*
+*  Copyright 2019-2020 Nicola Wrachien (next-hack.com)
+*
+*  This file is part of uChip Simple VGA Console Kernel Library.
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program  is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*
+*  tl;dr
+*  Do whatever you want, this program is free! Though we won't
+*  reject donations https://next-hack.com/index.php/donate/ :)
+*
+*/
+package uchipgamemapeditor;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.util.Locale;
+import javax.swing.JColorChooser;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+
+public class TilePropertiesDialog extends javax.swing.JDialog
+{
+    boolean confirmed = false;
+    private final int COL_INDEX = 0;
+    private final int COL_NAME = 1;
+    private final int COL_CNAME = 2;
+    private final int COL_COLOR = 3;
+
+    /*
+     * Creates new form TilePropertiesDialog
+     */
+  
+    public TilePropertiesDialog(java.awt.Frame parent, boolean modal, TileProperties  [] tileProperties)
+    {
+        super(parent, modal);
+        initComponents();
+        jTable.getColumnModel().getColumn(COL_COLOR).setCellRenderer(new ColorColumnCellRenderer());
+        jTable.getColumnModel().getColumn(COL_INDEX).setCellRenderer(new IndexColumnCellRenderer());
+        ((DefaultTableModel)jTable.getModel()).setRowCount(0);
+        for (int i = 0; i < tileProperties.length; i++)
+        {
+             ((DefaultTableModel)jTable.getModel()).addRow(new Object[] {i, tileProperties[i].name, tileProperties[i].cName, tileProperties[i].color});
+        }
+    }
+    TileProperties [] getTileProperties()
+    {
+        // return the tile properties stored in the table.
+        int r = jTable.getRowCount();
+        TileProperties [] tileProperties = new TileProperties[r];
+        for (int i = 0; i < r; i++)
+        {
+            TileProperties t = new TileProperties ((String) jTable.getValueAt( i,COL_NAME ), (String) jTable.getValueAt( i,COL_CNAME ), (int) jTable.getValueAt( i,COL_COLOR ) );
+            tileProperties[i] = t;
+        }
+        return tileProperties;
+    }
+    class ColorColumnCellRenderer extends DefaultTableCellRenderer 
+    {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) 
+        {
+            //Cells are by default rendered as a JLabel.
+            JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+            int color;
+            if (value == null)
+            {
+                color = 0xFFFFFF;
+                value = color;
+            }
+            else
+            {
+                color = (Integer) value & 0xFFFFFF;
+                value = color;
+            }
+            label.setText(String.format(Locale.ROOT,"0x%06X",color ));
+            Color c = new Color(color);
+            // get some contrast color
+            int red = 255, green = 255, blue = 255;
+            if (c.getBlue() > 127)
+                blue = 0;
+            if (c.getRed() > 127)
+                red = 0;
+            if (c.getGreen() > 127)
+                green = 0;
+            Color f = new Color(red, green, blue);
+            label.setBackground(c);
+            label.setForeground(f);
+            //Return the JLabel which renders the cell.
+            return label;
+        } 
+    }
+   class IndexColumnCellRenderer extends DefaultTableCellRenderer 
+    {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) 
+        {
+            //Cells are by default rendered as a JLabel.
+            JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+            label.setText(String.format(Locale.ROOT,"%d (0x%04x)", row,row ));
+            //Return the JLabel which renders the cell.
+            return label;
+        } 
+    }   
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents()
+    {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+        jButtonOk = new javax.swing.JButton();
+        jButtonInsertAddRow = new javax.swing.JButton();
+        jButtonDeleteRow = new javax.swing.JButton();
+        jButtonMoveUpRow = new javax.swing.JButton();
+        jButtonMoveDownRow = new javax.swing.JButton();
+        jButtonChooseColor = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tile Properties Editor");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosing(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosing(evt);
+            }
+        });
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, "Normal", "TILEPROP_NORMAL",  new Integer(0)},
+                {null, "Solid", "TILEPROP_SOLID",  new Integer(16711680)},
+                {null, "Jumpable Over", "TILEPROP_JUMPABLEOVER",  new Integer(255)},
+                {null, "Solid Where NotTransparent", "TILEPROP_COMPLEX",  new Integer(65280)},
+                {null, "Ladder", "TILEPROP_LADDER",  new Integer(16711935)},
+                {null, "Harmful", "TILEPROP_HARM",  new Integer(65535)}
+            },
+            new String []
+            {
+                "Index", "Name", "Name on C header", "Color"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, true, true, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable);
+
+        jButtonOk.setText("Ok");
+        jButtonOk.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonOkActionPerformed(evt);
+            }
+        });
+
+        jButtonInsertAddRow.setText("Insert or Add");
+        jButtonInsertAddRow.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonInsertAddRowActionPerformed(evt);
+            }
+        });
+
+        jButtonDeleteRow.setText("Delete");
+        jButtonDeleteRow.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonDeleteRowActionPerformed(evt);
+            }
+        });
+
+        jButtonMoveUpRow.setText("Move Up");
+        jButtonMoveUpRow.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonMoveUpRowActionPerformed(evt);
+            }
+        });
+
+        jButtonMoveDownRow.setText("Move Down");
+        jButtonMoveDownRow.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonMoveDownRowActionPerformed(evt);
+            }
+        });
+
+        jButtonChooseColor.setText("Choose Color");
+        jButtonChooseColor.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonChooseColorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonOk)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonMoveUpRow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonDeleteRow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonInsertAddRow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonMoveDownRow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonChooseColor, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonInsertAddRow)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonDeleteRow)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonMoveUpRow)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonMoveDownRow)
+                        .addGap(24, 24, 24)
+                        .addComponent(jButtonChooseColor)
+                        .addGap(0, 65, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonOk)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonOkActionPerformed
+    {//GEN-HEADEREND:event_jButtonOkActionPerformed
+        confirmed = true;
+        setVisible(false);
+    }//GEN-LAST:event_jButtonOkActionPerformed
+
+    private void jButtonChooseColorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonChooseColorActionPerformed
+    {//GEN-HEADEREND:event_jButtonChooseColorActionPerformed
+        int r = jTable.getSelectedRow();
+        if ( r != -1)
+        {
+            int color;
+            if (jTable.getValueAt(r, COL_COLOR) == null)
+            {
+                color = 0xFFFFFF;
+            }
+            else
+                color = (int) jTable.getValueAt(r, COL_COLOR);
+            Color newColor = JColorChooser.showDialog(this, "Choose color for tile type: " + jTable.getValueAt( r,COL_NAME ), new Color (color));    
+            jTable.setValueAt(newColor.getRGB(), r, COL_COLOR);
+        }
+    }//GEN-LAST:event_jButtonChooseColorActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
+    {//GEN-HEADEREND:event_formWindowClosing
+        confirmed = false;
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButtonDeleteRowActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonDeleteRowActionPerformed
+    {//GEN-HEADEREND:event_jButtonDeleteRowActionPerformed
+        int r = jTable.getSelectedRow();
+        if ( r != -1)   
+        {
+            ((DefaultTableModel)jTable.getModel()).removeRow(r);
+        }
+    }//GEN-LAST:event_jButtonDeleteRowActionPerformed
+
+    private void jButtonInsertAddRowActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonInsertAddRowActionPerformed
+    {//GEN-HEADEREND:event_jButtonInsertAddRowActionPerformed
+        int r = jTable.getSelectedRow();
+        if ( r != -1)   
+        {
+            ((DefaultTableModel)jTable.getModel()).insertRow(r, new Object[] {r,"Undefined " + r, "TILEPROP_UNDEFINED" + r, 0xFFFFFF});
+            jTable.setRowSelectionInterval(r + 1, r + 1);
+        }  
+        else
+            ((DefaultTableModel)jTable.getModel()).addRow(new Object[] {jTable.getRowCount(), "Undefined " + jTable.getRowCount(), "TILEPROP_UNDEFINED" + jTable.getRowCount(), 0xFFFFFF});
+
+    }//GEN-LAST:event_jButtonInsertAddRowActionPerformed
+
+    private void jButtonMoveUpRowActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonMoveUpRowActionPerformed
+    {//GEN-HEADEREND:event_jButtonMoveUpRowActionPerformed
+        int r = jTable.getSelectedRow();
+        if ( r != -1 && r > 0)   
+        {
+            ((DefaultTableModel)jTable.getModel()).moveRow(r, r, r - 1);
+            jTable.setRowSelectionInterval(r - 1, r - 1);
+        }
+    }//GEN-LAST:event_jButtonMoveUpRowActionPerformed
+
+    private void jButtonMoveDownRowActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonMoveDownRowActionPerformed
+    {//GEN-HEADEREND:event_jButtonMoveDownRowActionPerformed
+        int r = jTable.getSelectedRow();
+        if ( r != -1 && r < (jTable.getRowCount() - 1) )   
+        {
+            ((DefaultTableModel)jTable.getModel()).moveRow(r, r, r + 1);
+            jTable.setRowSelectionInterval(r + 1, r + 1);
+        }        
+    }//GEN-LAST:event_jButtonMoveDownRowActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonChooseColor;
+    private javax.swing.JButton jButtonDeleteRow;
+    private javax.swing.JButton jButtonInsertAddRow;
+    private javax.swing.JButton jButtonMoveDownRow;
+    private javax.swing.JButton jButtonMoveUpRow;
+    private javax.swing.JButton jButtonOk;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable;
+    // End of variables declaration//GEN-END:variables
+}
