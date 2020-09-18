@@ -1,2 +1,3 @@
 # uChipGameMapEditor
-Game Map Editor for uChip based games..
+Game Map Editor for uChip based games...
+For help visit https://next-hack.com/index.php/2020/09/18/uchip-game-map-editor/
